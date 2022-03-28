@@ -33,7 +33,7 @@ export const getProductos = () => {
 export const getProducto = (id) => {
     const index = productos.findIndex(producto => producto.id === parseInt(id));
     if (index === -1) {
-        return aviso ='no existe el id buscado';
+        return 'no existe el id buscado';
     }
     return productos[index];
 }
@@ -41,7 +41,7 @@ export const getProducto = (id) => {
 export const deleteProducto = (id) => {
     const index = productos.findIndex(producto => producto.id === parseInt(id));
     if (index === -1) {
-        console.log('no existe el id buscado')
+        return 'no existe el id buscado';
     }
     productos.splice(index, 1);
 }
