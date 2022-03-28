@@ -20,31 +20,43 @@ const productos = [
 
 ]
 
-let productPromise = new Promise((resolve, reject) => {
-    setTimeout(function () {
-        resolve(productos);
-    }, 1000);
-});
+// let productPromise = new Promise((resolve, reject) => {
+//     setTimeout(function () {
+//         resolve(productos);
+//     }, 1000);
+// });
 
 export const getProductos = () => {
-    return productPromise;
+    return productos;
 };
 
 export const getProducto = (id) => {
     return productos.find(prod => prod.id == id);
 }
 
-// export const deleteProducto =  (id) => {
-//     return  productos.find(prod => prod.id == id);
-// }
+export const deleteProducto = (id) => {
+    const index = productos.findIndex(producto => producto.id === parseInt(id));
+    if (index === -1) {
+        console.log('no existe el id buscado')
+    }
+    productos.splice(index, 1);
+    console.table(productos);
 
-export const addProducto =  producto => {
-    const productoNuevo =  {...producto, id: productos.length + 1};
-    console.log(productoNuevo);
+}
+
+export const addProducto = producto => {
+    const productoNuevo = { ...producto, id: productos.length + 1 };
     productos.push(productoNuevo);
     return productoNuevo
 };
 
-// export const deleteUser = user => {
-//     console.log('borrar usuario');
-// };
+export const updateProducto = (id, producto) => {
+    const index = productos.findIndex(producto => producto.id === id);
+    productos[index].title = producto.title;
+    productos[index].price = producto.price;
+    productos[index].thumbnail = producto.thumbnail;
+    return productos[index];
+}
+
+
+
