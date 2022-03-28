@@ -17,22 +17,23 @@ router.get('/productos/:id', async (req, res) => {
     res.send(producto);
 });
 
-router.post('/productos',  (req, res) => {
+router.post('/productos', (req, res) => {
     console.log(req.body);
     let productoNuevo = addProducto(req.body);
-    res.send(`${productoNuevo} agregado, su id es ${productoNuevo.id}`);
+    res.send(`el producto ${productoNuevo.title} fue agregado, con un precio de ${productoNuevo.price} y un thumbnail de ${productoNuevo.thumbnail}, su id asignado es ${productoNuevo.id}`);
 });
 
 router.put('/productos/:id', (req, res) => {
     const id = req.params.id;
-    let producto = updateProducto(id, req.body);
-    res.send(`${producto} actualizado`);
+    let productoNuevo = req.body;
+    let producto = updateProducto(id, productoNuevo);
+    res.send(producto);
 });
 
 router.delete('/productos/:id',  (req, res) => {
     const id = req.params.id;
     let producto =  deleteProducto(id);
-    res.send(`${producto} eliminado`);
+    res.send(producto);
 });
 
 export default router;

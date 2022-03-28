@@ -20,12 +20,6 @@ const productos = [
 
 ]
 
-// let productPromise = new Promise((resolve, reject) => {
-//     setTimeout(function () {
-//         resolve(productos);
-//     }, 1000);
-// });
-
 export const getProductos = () => {
     return productos;
 };
@@ -44,6 +38,7 @@ export const deleteProducto = (id) => {
         return 'no existe el id buscado';
     }
     productos.splice(index, 1);
+    return `el producto con id ${id} fue eliminado correctamente`
 }
 
 export const addProducto = producto => {
@@ -52,13 +47,13 @@ export const addProducto = producto => {
     return productoNuevo
 };
 
-export const updateProducto = (id, producto) => {
-    const index = productos.findIndex(producto => producto.id === id);
-    productos[index].title = producto.title;
-    productos[index].price = producto.price;
-    productos[index].thumbnail = producto.thumbnail;
-    return productos[index];
+export const updateProducto = (id, productoNuevo) => {
+    const index = productos.findIndex(prod => prod.id === parseInt(id));
+    if (index === -1) {
+        return 'no existe el id buscado';
+    }
+    productos[index].title = productoNuevo.title;
+    productos[index].price = productoNuevo.price;
+    productos[index].thumbnail = productoNuevo.thumbnail;
+    return `el producto ${productoNuevo.title} fue actualizado, con un precio de ${productoNuevo.price} y un thumbnail de ${productoNuevo.thumbnail}`;
 }
-
-console.table(getProducto(5));
-
