@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getProductos, getProducto, deleteProducto, addProducto, updateProducto} from '../controllers/productos.js';
+
 const router = Router();
 
 router.get('/', (req, res) => {
@@ -20,7 +21,7 @@ router.get('/productos/:id', async (req, res) => {
 router.post('/productos', (req, res) => {
     console.log(req.body);
     let productoNuevo = addProducto(req.body);
-    res.send(`el producto ${productoNuevo.title} fue agregado, con un precio de ${productoNuevo.price} y un thumbnail de ${productoNuevo.thumbnail}, su id asignado es ${productoNuevo.id}`);
+    res.send(productoNuevo);
 });
 
 router.put('/productos/:id', (req, res) => {

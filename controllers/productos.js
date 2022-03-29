@@ -44,7 +44,7 @@ export const deleteProducto = (id) => {
 export const addProducto = producto => {
     const productoNuevo = { ...producto, id: productos.length + 1 };
     productos.push(productoNuevo);
-    return productoNuevo
+    return `el producto ${productoNuevo.title} fue agregado, con un precio de $${productoNuevo.price} y un thumbnail de ${productoNuevo.thumbnail}, su id asignado es ${productoNuevo.id}`
 };
 
 export const updateProducto = (id, productoNuevo) => {
@@ -52,8 +52,8 @@ export const updateProducto = (id, productoNuevo) => {
     if (index === -1) {
         return 'no existe el id buscado';
     }
-    productos[index].title = productoNuevo.title;
-    productos[index].price = productoNuevo.price;
-    productos[index].thumbnail = productoNuevo.thumbnail;
-    return `el producto ${productoNuevo.title} fue actualizado, con un precio de ${productoNuevo.price} y un thumbnail de ${productoNuevo.thumbnail}`;
+    if (productoNuevo.title){productos[index].title = productoNuevo.title};
+    if (productoNuevo.price){productos[index].price = productoNuevo.price};
+    if (productoNuevo.thumbnail){productos[index].thumbnail = productoNuevo.thumbnail};
+    return `el producto ${productoNuevo.title} fue actualizado correctamente`;
 }
